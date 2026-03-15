@@ -328,9 +328,6 @@
   <p class="dream-text" id="dream-text">daydreaming</p>
   <p class="final-question" id="final-question"></p>
   <p class="tap-hint" id="tap-hint">tap to begin</p>
-  <audio id="dream-audio" preload="auto">
-    <source src="3月14日（23-11）.m4a" type="audio/mp4">
-  </audio>
   <div class="dream-input-wrapper" id="dream-input-wrapper">
     <textarea id="dream-textarea" placeholder="Write your dream..."></textarea>
     <p class="dream-input-hint" id="dream-input-hint">Click to write your dream</p>
@@ -564,20 +561,12 @@
         overlay.classList.add('visible');
       };
       let cursorShownOnce = false;
-      let audioTimerStarted = false;
       const activateTextarea = () => {
         if (textarea.readOnly) return;
         overlay.classList.remove('visible');
         textarea.classList.add('active');
         textarea.focus();
         cursorShownOnce = true;
-        if (!audioTimerStarted) {
-          audioTimerStarted = true;
-          setTimeout(() => {
-            const audio = document.getElementById('dream-audio');
-            if (audio) audio.play().catch(() => {});
-          }, 12000);
-        }
       };
       overlay.addEventListener('click', activateTextarea);
       overlay.addEventListener('touchend', (e) => {
