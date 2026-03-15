@@ -33,7 +33,7 @@ Type your dream or your heart's desire into the water. As you click, ripples of 
 2. Follow the transitions and breathe slowly.
 3. Write your dream at the end and keep it in your heart.
 
-**Try it here:** [https://in-a-dream.vercel.app](https://in-a-dream.vercel.app) (※URLが異なる場合は修正してください)
+**Try it here:** [https://in-a-dream.vercel.app](https://in-a-dream.vercel.app) 
 
 ---
 
