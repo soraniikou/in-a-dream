@@ -15,7 +15,7 @@ To respect your time and prevent digital fatigue, each phase has been condensed 
 
 ### 1. Starlit Solitude (30s)
 Gaze at a quiet, deep sky. Let the darkness calm your eyes and the stars settle your thoughts.
-![Phase1](./スクリーンショット%202026-03-15%20074607.png)
+![Phase1](./スクリーンショット%202026-03-15%20074749.png)
 
 ### 2. Angelic Dawn (30s)
 Watch as the world slowly brightens. Soft angel wings drift through the light, creating a space for you to imagine the life you want to lead.
@@ -23,7 +23,7 @@ Watch as the world slowly brightens. Soft angel wings drift through the light, c
 
 ### 3. Ripples of Dreams (30s)
 Type your dream or your heart's desire into the water. As you click, ripples of light expand and gradually turn a warm pink, embracing your thoughts.
-![Phase3](./スクリーンショット%202026-03-15%20074749.png)
+![Phase3](./スクリーンショット%202026-03-15%20074607.png)
 ![Phase4](./スクリーンショット%202026-03-15%20075023.png)
 
 ---
