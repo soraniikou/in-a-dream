@@ -61,24 +61,24 @@
       z-index: 3;
       transition: background 2s ease;
     }
-    /* Final screen (tap / back·stop): deep navy */
+    /* Final screen (tap to begin / back·stop): navy */
     #dream-scene.final-navy {
       background: linear-gradient(
         to bottom,
-        #0a1a32 0%,
-        #081428 40%,
-        #061020 70%,
-        #040c18 100%
+        #16356a 0%,
+        #122c58 40%,
+        #0e2448 70%,
+        #0a1c3c 100%
       );
     }
-    /* Dream writing scene: even darker */
+    /* Dream writing scene: dark navy (circle in the center is unchanged) */
     #dream-scene.writing-dark {
       background: linear-gradient(
         to bottom,
-        #02060e 0%,
-        #01040a 40%,
-        #000208 70%,
-        #000105 100%
+        #0c2248 0%,
+        #091c3c 40%,
+        #071632 70%,
+        #051028 100%
       );
     }
 
@@ -405,7 +405,7 @@
 
     function initStars() {
       stars = [];
-      const count = Math.floor((canvas.width * canvas.height) / 2400);
+      const count = Math.floor((canvas.width * canvas.height) / 7200);
       for (let i = 0; i < count; i++) {
         stars.push({
           x: Math.random() * canvas.width,
