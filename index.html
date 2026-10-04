@@ -59,6 +59,27 @@
       opacity: 0;
       pointer-events: none;
       z-index: 3;
+      transition: background 2s ease;
+    }
+    /* Final screen (tap / back·stop): deep navy */
+    #dream-scene.final-navy {
+      background: linear-gradient(
+        to bottom,
+        #0a1a32 0%,
+        #081428 40%,
+        #061020 70%,
+        #040c18 100%
+      );
+    }
+    /* Dream writing scene: even darker */
+    #dream-scene.writing-dark {
+      background: linear-gradient(
+        to bottom,
+        #02060e 0%,
+        #01040a 40%,
+        #000208 70%,
+        #000105 100%
+      );
     }
 
     /* Stars canvas */
@@ -169,12 +190,15 @@
     .final-actions button {
       font-family: 'Shippori Mincho', serif;
       font-size: clamp(0.9rem, 2vw, 1.2rem);
-      color: rgba(60, 90, 130, 0.7);
+      color: rgba(200, 220, 255, 0.75);
       letter-spacing: 0.2em;
       background: transparent;
       border: none;
       cursor: pointer;
       padding: 8px 12px;
+    }
+    .final-question.on-navy {
+      color: rgba(210, 225, 255, 0.9);
     }
 
     /* Navy ripple */
@@ -489,6 +513,10 @@
       const text = 'What dream do you want to live for?';
       const el = document.getElementById('final-question');
       const finalActions = document.getElementById('final-actions');
+      const dreamScene = document.getElementById('dream-scene');
+      dreamScene.classList.add('final-navy');
+      dreamScene.style.opacity = '1';
+      el.classList.add('on-navy');
       document.getElementById('progress').parentElement.style.opacity = '0';
       el.style.opacity = '1';
       el.textContent = '';
@@ -556,6 +584,10 @@
       document.body.removeEventListener('click', onTapForRipple);
       document.body.removeEventListener('touchstart', onTapForRipple);
       document.body.classList.add('dream-writing');
+      const dreamScene = document.getElementById('dream-scene');
+      dreamScene.classList.remove('final-navy');
+      dreamScene.classList.add('writing-dark');
+      dreamScene.style.opacity = '1';
 
       const rippleCenterX = window.innerWidth / 2;
       const rippleCenterY = window.innerHeight / 2;
