@@ -21,8 +21,7 @@ Gaze at a quiet, deep sky. Let the darkness calm your eyes and the stars settle 
 Watch as the world slowly brightens. Soft angel wings drift through the light, creating a space for you to imagine the life you want to lead.
 ![Phase2](./スクリーンショット%202026-03-15%20074652.png)
 
-3. Ripples of Dreams (30s)
-Type your dream or your heart's desire into the water. 
+
 
 ---
 
