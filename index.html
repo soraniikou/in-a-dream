@@ -14,6 +14,11 @@
       overflow: hidden;
       font-family: 'Shippori Mincho', serif;
     }
+    body.closing {
+      transition: opacity 4s ease-in-out;
+      opacity: 0;
+      pointer-events: none;
+    }
 
     /* Starry sky layer */
     #sky {
@@ -144,26 +149,32 @@
       line-height: 1.8;
     }
 
-    /* tap to begin sign (hidden at start, fadeIn after 2 seconds) */
-    .tap-hint {
+    /* Final screen action buttons (hidden at start, fadeIn after 2 seconds) */
+    .final-actions {
       position: fixed;
       bottom: 15%;
       left: 50%;
       transform: translateX(-50%);
+      display: flex;
+      gap: 2.5rem;
+      z-index: 6;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+    .final-actions.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .final-actions button {
+      font-family: 'Shippori Mincho', serif;
       font-size: clamp(0.9rem, 2vw, 1.2rem);
       color: rgba(60, 90, 130, 0.7);
       letter-spacing: 0.2em;
-      z-index: 6;
-      opacity: 0;
-      transition: opacity 0.8s ease;
-    }
-    .tap-hint.visible {
-      opacity: 1;
-      animation: tap-pulse 1.5s ease-in-out infinite;
-    }
-    @keyframes tap-pulse {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 8px 12px;
     }
 
     /* Navy ripple */
@@ -327,7 +338,10 @@
   <h1 class="title" id="title">in your dream...</h1>
   <p class="dream-text" id="dream-text">daydreaming</p>
   <p class="final-question" id="final-question"></p>
-  <p class="tap-hint" id="tap-hint">tap to begin</p>
+  <div class="final-actions" id="final-actions">
+    <button type="button" id="back-btn">back</button>
+    <button type="button" id="stop-btn">stop</button>
+  </div>
   <div class="dream-input-wrapper" id="dream-input-wrapper">
     <textarea id="dream-textarea" placeholder="Write your dream..."></textarea>
     <p class="dream-input-hint" id="dream-input-hint">Click to write your dream</p>
@@ -367,7 +381,7 @@
 
     function initStars() {
       stars = [];
-      const count = Math.floor((canvas.width * canvas.height) / 800);
+      const count = Math.floor((canvas.width * canvas.height) / 1600);
       for (let i = 0; i < count; i++) {
         stars.push({
           x: Math.random() * canvas.width,
@@ -470,11 +484,11 @@
       featherInterval = setInterval(createFeather, featherIntervalMs);
     }
 
-    // ========== Character-by-character display → tap to begin ==========
+    // ========== Character-by-character display → back / stop ==========
     function showQuestionCharByChar() {
       const text = 'What dream do you want to live for?';
       const el = document.getElementById('final-question');
-      const tapHint = document.getElementById('tap-hint');
+      const finalActions = document.getElementById('final-actions');
       document.getElementById('progress').parentElement.style.opacity = '0';
       el.style.opacity = '1';
       el.textContent = '';
@@ -486,10 +500,45 @@
         } else {
           clearInterval(interval);
           setTimeout(() => {
-            tapHint.classList.add('visible');
+            finalActions.classList.add('visible');
           }, 2000);
-          document.body.addEventListener('click', onTapForRipple, { once: true });
-          document.body.addEventListener('touchstart', onTapForRipple, { once: true, passive: false });
+          document.getElementById('back-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            location.reload();
+          }, { once: true });
+          document.getElementById('stop-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            clearInterval(featherInterval);
+            clearInterval(shootingStarInterval);
+            if (animationId) cancelAnimationFrame(animationId);
+            document.body.removeEventListener('click', onTapForRipple);
+            document.body.removeEventListener('touchstart', onTapForRipple);
+            finalActions.classList.remove('visible');
+            document.getElementById('final-question').style.transition = 'opacity 3s ease-in-out';
+            document.getElementById('final-question').style.opacity = '0';
+            document.getElementById('dream-scene').style.transition = 'opacity 4s ease-in-out';
+            document.getElementById('dream-scene').style.opacity = '0';
+            document.getElementById('stars-canvas').style.transition = 'opacity 4s ease-in-out';
+            document.getElementById('stars-canvas').style.opacity = '0';
+            document.getElementById('sunrise-overlay').style.transition = 'opacity 4s ease-in-out';
+            document.getElementById('sunrise-overlay').style.opacity = '0';
+            document.querySelectorAll('.feather, .shooting-star').forEach(el => {
+              el.style.transition = 'opacity 2.5s ease-in-out';
+              el.style.opacity = '0';
+            });
+            requestAnimationFrame(() => {
+              document.body.classList.add('closing');
+            });
+            setTimeout(() => {
+              document.querySelectorAll('.feather, .shooting-star').forEach(el => el.remove());
+              document.body.innerHTML = '';
+              document.body.style.background = '#050508';
+              document.body.style.opacity = '1';
+              document.body.classList.remove('closing');
+            }, 4200);
+          }, { once: true });
+          document.body.addEventListener('click', onTapForRipple);
+          document.body.addEventListener('touchstart', onTapForRipple, { passive: false });
         }
       }, 350);
     }
@@ -498,11 +547,12 @@
     let rippleCreated = false;
     function onTapForRipple(e) {
       if (rippleCreated) return;
+      if (e.target.closest('#final-actions')) return;
       rippleCreated = true;
       if (e.cancelable) e.preventDefault();
 
       document.getElementById('final-question').style.opacity = '0';
-      document.getElementById('tap-hint').classList.remove('visible');
+      document.getElementById('final-actions').classList.remove('visible');
       document.body.removeEventListener('click', onTapForRipple);
       document.body.removeEventListener('touchstart', onTapForRipple);
       document.body.classList.add('dream-writing');
