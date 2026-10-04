@@ -24,7 +24,6 @@ Watch as the world slowly brightens. Soft angel wings drift through the light, c
 3. Ripples of Dreams (30s)
 Type your dream or your heart's desire into the water. As you click, ripples of light expand and gradually turn a warm pink, embracing your thoughts.
 ![Phase3](./スクリーンショット%202026-03-15%20074607.png)
-![Phase4](./スクリーンショット%202026-03-15%20075023.png)
 
 ---
 
