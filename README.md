@@ -22,15 +22,14 @@ Watch as the world slowly brightens. Soft angel wings drift through the light, c
 ![Phase2](./スクリーンショット%202026-03-15%20074652.png)
 
 3. Ripples of Dreams (30s)
-Type your dream or your heart's desire into the water. As you click, ripples of light expand and gradually turn a warm pink, embracing your thoughts.
-![Phase3](./スクリーンショット%202026-03-15%20074607.png)
+Type your dream or your heart's desire into the water. 
 
 ---
 
 🖊️ How to Experience
 1. Open the app and let go of your surroundings.
 2. Follow the transitions and breathe slowly.
-3. Write your dream at the end and keep it in your heart.
+   
 
 Try it here:🩷 [https://in-a-dream.vercel.app](https://in-a-dream.vercel.app) 
 
